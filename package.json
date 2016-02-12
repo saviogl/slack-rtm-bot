@@ -1,0 +1,27 @@
+{
+  "name": "slack-rtm-bot",
+  "version": "1.0.0",
+  "description": "Slack Bot Real Time Messaging API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "^5.4.1",
+    "npm": "^3.3.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saviogl/slack-rtm-bot.git"
+  },
+  "keywords": [],
+  "author": "Sávio Lucena <saviogl@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saviogl/slack-rtm-bot/issues"
+  },
+  "homepage": "https://github.com/saviogl/slack-rtm-bot#readme",
+  "devDependencies": {
+    "semistandard": "7.0.5"
+  }
+}
