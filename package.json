@@ -2,9 +2,9 @@
   "name": "slack-rtm-bot",
   "version": "1.0.0",
   "description": "Slack Bot Real Time Messaging API",
-  "main": "bot.js",
+  "main": "src/SlackBot.js",
   "scripts": {
-    "test": "./node_modules/.bin/semistandard",
+    "test": "./node_modules/.bin/semistandard && ./node_modules/.bin/mocha -t 10000",
     "start": "./node_modules/.bin/nodemon -e js bot.js"
   },
   "engines": {
@@ -22,6 +22,11 @@
     "url": "https://github.com/saviogl/slack-rtm-bot/issues"
   },
   "homepage": "https://github.com/saviogl/slack-rtm-bot#readme",
+  "semistandard": {
+    "ignore": [
+      "/test/"
+    ]
+  },  
   "devDependencies": {
     "mocha": "2.4.5",
     "nodemon": "1.8.1",

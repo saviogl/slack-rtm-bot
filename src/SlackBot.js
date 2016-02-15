@@ -35,17 +35,31 @@ SlackBot.prototype.startRtm = function (options) {
     if (err) {
       let error = new VError(err, 'Slack rtm API call failed');
       this.emit('error', error);
-      if (this.reconnect) this.tryReconnect();
+      if (this.reconnect) {
+        this.tryReconnect();
+      } else {
+        clearInterval(this.sendInterval);
+      }
       return;
     }
     try {
       let slackMetadata = JSON.parse(body);
+      if (!slackMetadata.ok) {
+        let error = new VError(slackMetadata.error, 'Slack returned error message');
+        this.emit('error', error);
+        clearInterval(this.sendInterval);
+        return;
+      }
       this.metadata = slackMetadata;
       return this.connectWebSocket(this.metadata.url);
     } catch (e) {
       let error = new VError(e, 'JSON parse failed');
       this.emit('error', error);
-      if (this.reconnect) this.tryReconnect();
+      if (this.reconnect) {
+        this.tryReconnect();
+      } else {
+        clearInterval(this.sendInterval);
+      }
       return;
     }
   });
@@ -77,10 +91,6 @@ SlackBot.prototype.connectWebSocket = function (url) {
   slack.on('close', (err) => {
     this.emit('disconected', err || null);
     if (this.reconnect) this.tryReconnect();
-  });
-
-  slack.on('ping', () => {
-    this.emit('ping');
   });
 
   slack.on('open', () => {
@@ -155,11 +165,12 @@ SlackBot.prototype.detectDesconnection = function () {
     let pinger = new Replyer(null, this);
     pinger.ping();
     this.timeout = setTimeout(function () {
-      this.emit('disconected');
+      this.emit('disconnected');
+      clearInterval(pingInterval);
       if (this.reconnect) {
-        this.tryReconnect();
-        clearInterval(pingInterval);
+        return this.tryReconnect();
       }
+      process.exit();
     }.bind(this), 10000);
   }.bind(this), 10000);
 };
