@@ -85,3 +85,8 @@ The events type are:
 * direct_mention
 * mention // A mention by @channel or @here
 * ambient // Any message
+
+## Test
+```bash
+npm test
+```

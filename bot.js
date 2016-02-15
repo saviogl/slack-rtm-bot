@@ -13,7 +13,7 @@ node bot.js
 */
 
 'use strict';
-const Bot = require('./src/SlackBot.js');
+const Bot = require('.');
 const VError = require('verror');
 
 let token = process.env.token;
