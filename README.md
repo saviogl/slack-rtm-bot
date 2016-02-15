@@ -45,7 +45,7 @@ SlackBot.on('hello', () => {
 ```
 
 All the events emited from Slack are parsed and sent to the SlackBot. All Slack events are listed [here](https://api.slack.com/rtm)
-
+```bash
 SlackBot.on('hello', () => {
   // Successfull connection
 });
