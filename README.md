@@ -81,7 +81,7 @@ SlackBot.listen(['hello'], ['direct_message', 'direct_mention'], (bot) => {
 
 The events type are:
 
-direct_message
-direct_mention
-mention // A mention by @channel or @here
-ambient // Any message
+* direct_message
+* direct_mention
+* mention // A mention by @channel or @here
+* ambient // Any message
