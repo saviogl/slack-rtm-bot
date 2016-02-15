@@ -5,7 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "test": "./node_modules/.bin/semistandard",
-    "dev": "./node_modules/.bin/nodemon -e js bot.js"
+    "start": "./node_modules/.bin/nodemon -e js bot.js"
   },
   "engines": {
     "node": "^5.4.1",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/saviogl/slack-rtm-bot#readme",
   "devDependencies": {
+    "mocha": "2.4.5",
     "nodemon": "1.8.1",
     "semistandard": "7.0.5"
   },

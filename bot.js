@@ -1,36 +1,28 @@
 'use strict';
-const Bot = require( './src/SlackBot.js');
-const VError = require( 'verror');
+const Bot = require('./src/SlackBot.js');
+const VError = require('verror');
 
-// if (!process.env.token) {
-//     console.log('Error: Missing specific token in environment');
-//     process.exit(1);
-// }
+let token = process.env.token;
+if (!token) {
+  throw new VError('Error: Missing \'token\' in environment. Try to run: "export token=<token_string>"');
+}
 
-const SlackBot = new Bot('xoxb-21223842357-Y4PJeuIUxy2mMDtygEZcRrHF');
-SlackBot.startRtm({reconnect: true});
+const SlackBot = new Bot(token);
+
+SlackBot.startRtm();
+
 SlackBot.on('error', (err) => {
   console.log('error', err.message);
 });
 
-SlackBot.on('recconecting', (err) => {
-  console.log('error', err.message);
+SlackBot.on('reconnecting', (err) => {
+  console.log('reconnecting', err);
 });
 
 SlackBot.on('hello', () => {
-    console.log('connected');
-    console.log(SlackBot.id);
-    console.log(SlackBot.name);
+  console.log('connected');
 });
 
 SlackBot.on('disconected', () => {
-    console.log('disconected')
-})
-
-SlackBot.on('message', (msg) => {
-    console.log('msg', msg);
-});
-
-SlackBot.on('ping', () => {
-    console.log('ping');
+  console.log('disconected');
 });
