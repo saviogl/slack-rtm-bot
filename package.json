@@ -4,8 +4,8 @@
   "description": "Slack Bot Real Time Messaging API",
   "main": "src/SlackBot.js",
   "scripts": {
-    "test": "./node_modules/.bin/semistandard && ./node_modules/.bin/mocha -t 10000",
-    "start": "./node_modules/.bin/nodemon -e js bot.js"
+    "test": "semistandard && mocha -t 10000",
+    "start": "nodemon -e js bot.js"
   },
   "engines": {
     "node": "^5.4.1",
@@ -26,13 +26,14 @@
     "ignore": [
       "/test/"
     ]
-  },  
+  },
   "devDependencies": {
     "mocha": "2.4.5",
     "nodemon": "1.8.1",
     "semistandard": "7.0.5"
   },
   "dependencies": {
+    "lodash": "4.11.1",
     "request": "2.69.0",
     "uuid": "2.0.1",
     "verror": "1.6.1",
